@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booklib</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500; 600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <svg class="bg-pattern" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="cozyPattern" width="100" height="100" patternUnits="userSpaceOnUse">
+
+        
+        <g transform="translate(10 15) scale(0.65)">
+          <path d="M28 40 C42 38 44 18 30 13" stroke="var(--color-primary)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="15" cy="35" rx="14" ry="16" fill="var(--color-primary)"/>
+          <polygon points="7,9 9,0 13,8" fill="var(--color-primary)"/>
+          <polygon points="17,8 21,0 23,9" fill="var(--color-primary)"/>
+          <circle cx="15" cy="14" r="10" fill="var(--color-primary)"/>
+        </g>
+       
+        <g transform="translate(55 15) scale(0.45)">
+          <ellipse cx="15" cy="35" rx="14" ry="16" fill="var(--color-primary-dark)"/>
+          <polygon points="7,9 9,0 13,8" fill="var(--color-primary-dark)"/>
+          <polygon points="17,8 21,0 23,9" fill="var(--color-primary-dark)"/>
+          <circle cx="15" cy="14" r="10" fill="var(--color-primary-dark)"/>
+        </g>
+
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#cozyPattern)" />
+  </svg>
+    ...
+  <div class="app">
+      <header class="site-header">
+
+      <div class="site-header__brand">
+  <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M20 12 C14 9 8 10 5 12 L5 30 C8 28 14 27 20 30 Z" fill="var(--color-primary)"/>
+    <path d="M20 12 C26 9 32 10 35 12 L35 30 C32 28 26 27 20 30 Z" fill="var(--color-primary-dark)"/>
+    <line x1="20" y1="12" x2="20" y2="30" stroke="var(--color-surface)" stroke-width="1" opacity="0.5"/>
+    <g transform="translate(20 9)">
+      <circle cx="0" cy="-4" r="2.2" fill="var(--color-secondary)"/>
+      <circle cx="-2.2" cy="-1.5" r="2.2" fill="var(--color-secondary)"/>
+      <circle cx="2.2" cy="-1.5" r="2.2" fill="var(--color-secondary)"/>
+      <circle cx="0" cy="0" r="2" fill="var(--color-primary-dark)"/>
+    </g>
+  </svg>
+  <h1 class="logo-wordmark">Booklib</h1>
+</div>
+        <button class="btn btn--primary" id="addBookBtn" type="button">Kitap Ekle</button>
+      </header>
+
+    <blockquote class="quote-banner">
+      <p class="quote-banner__text">"Kitapsız bir oda, ruhsuz bir beden gibidir."</p>
+      <cite class="quote-banner__author">— Cicero</cite>
+    </blockquote>
+
+    <div class="stats-bar">
+  <div class="stat-card">
+    <span class="stat-card__value" id="statTotal">0</span>
+    <span class="stat-card__label">Toplam</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-card__value" id="statFinished">0</span>
+    <span class="stat-card__label">Bitti</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-card__value" id="statReading">0</span>
+    <span class="stat-card__label">Okunuyor</span>
+  </div>
+</div>
+      <div class="toolbar">
+  <nav class="filter-tabs" aria-label="Kitap durumuna göre filtrele">
+    <button class="filter-tabs__item is-active" data-filter="all">Tümü</button>
+    <button class="filter-tabs__item" data-filter="to_read">Okunacak</button>
+    <button class="filter-tabs__item" data-filter="reading">Okunuyor</button>
+    <button class="filter-tabs__item" data-filter="finished">Bitti</button>
+  </nav>
+
+  <div class="search-box">
+    <span class="search-box__icon" aria-hidden="true">🔍</span>
+    <input 
+      type="search" 
+      id="searchInput" 
+      class="search-box__input" 
+      placeholder="Kitap veya yazar ara..." 
+      aria-label="Kitap veya yazar ara"
+    >
+  </div>
+  <div class="sort-box">
+  <select id="sortSelect" class="sort-box__select" aria-label="Kitapları sırala">
+    <option value="newest">Son Eklenen</option>
+    <option value="title-asc">Başlık (A-Z)</option>
+    <option value="rating-desc">Puan (Yüksek-Düşük)</option>
+  </select>
+</div>
+</div>
+
+      <main class="book-grid" id="bookGrid">
+      
+        <article class="book-card">
+            <span class="status-badge status-badge--reading">Okunuyor</span>
+            <h2 class="book-card__title">Dune</h2>
+            <p class="book-card__author">Frank Herbert</p>
+            <p class="book-card__genre">Bilim Kurgu</p>
+            <div class="book-card__rating" aria-label="5 üzerinden 4 puan">★★★★☆</div>
+          </article>
+        </main>
+
+        <div class="empty-state" id="emptyState" hidden>
+  <div class="empty-state__illustration" aria-hidden="true">
+  <svg viewBox="0 0 190 140" xmlns="http://www.w3.org/2000/svg">
+    <!-- Kitap yığını (8.2'den korundu) -->
+    <rect x="20" y="90" width="120" height="24" rx="6" fill="var(--color-secondary)" />
+    <rect x="30" y="66" width="100" height="24" rx="6" fill="var(--color-primary)" opacity="0.85" />
+    <rect x="40" y="42" width="80" height="24" rx="6" fill="var(--color-primary-dark)" />
+    <path d="M80 18c-4-6-14-4-14 3 0 6 14 14 14s14-8 14-14c0-7-10-9-14-3z" fill="var(--color-secondary)" />
+    
+    <!-- YENİ: Kitapların yanında oturan minik kedi -->
+    <g transform="translate(148 68)">
+      <!-- Kuyruk: gövdenin arkasından kıvrılıp öne uzanır -->
+      <path d="M28 40 C42 38 44 18 30 13" stroke="var(--color-primary-dark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- Gövde -->
+      <ellipse cx="15" cy="35" rx="14" ry="16" fill="var(--color-primary)"/>
+      <!-- Kulaklar -->
+      <polygon points="7,9 9,0 13,8" fill="var(--color-primary)"/>
+      <polygon points="17,8 21,0 23,9" fill="var(--color-primary)"/>
+      <!-- Kafa -->
+      <circle cx="15" cy="14" r="10" fill="var(--color-primary)"/>
+      <!-- Kapalı, huzurlu gözler -->
+      <path d="M10 13 q2 2 4 0" stroke="var(--color-text)" stroke-width="1" fill="none"/>
+      <path d="M17 13 q2 2 4 0" stroke="var(--color-text)" stroke-width="1" fill="none"/>
+      <!-- Minik burun -->
+      <circle cx="15" cy="17.5" r="1.3" fill="var(--color-secondary)"/>
+    </g>
+  </svg>
+</div>
+  <h2 class="empty-state__title" id="emptyStateTitle">Henüz kitap eklenmedi</h2>
+  <p class="empty-state__text" id="emptyStateText">Okuma listesi oluşturmaya ilk kitabını ekle</p>
+  <button type="button" class="btn btn--primary" id="emptyStateCta">İlk Kitabını Ekle</button>
+</div>
+      <dialog class="modal" id="addBookModal">
+        <form class="modal__form" id="addBookForm">
+          <h2 class="modal_title" id="modalTitle">Yeni Kitap Ekle</h2>
+
+          <label class="form-field">
+            <span class="form-field__label">Kitap Adı</span>
+            <input type="text" name="title" required maxlength="200">
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">Yazar</span>
+            <input type="text" name="author" required maxlength="100">
+          </label>
+          <label class="form-field"
+            <span class="form-field__label">Tür</span>
+            <input type="text" name="genre" maxlength="50">
+          </label>
+          <label class="form-field">
+            <span class="form-field__label">Durum</span>
+            <select name="status">
+              <option value="to_read">Okunacak</option>
+              <option value="reading">Okunuyor</option>
+              <option value="finished">Bitti</option>
+            </select>
+          </label>
+          <label class="form-field" id="ratingField" hidden>
+    <span class="form-field__label">Puan</span>
+    <select name="rating">
+      <option value="">Puansız</option>
+      <option value="1">🐾 (1)</option>
+      <option value="2">🐾🐾 (2)</option>
+      <option value="3">🐾🐾🐾 (3)</option>
+      <option value="4">🐾🐾🐾🐾 (4)</option>
+      <option value="5">🐾🐾🐾🐾🐾 (5)</option>
+    </select>
+  </label>
+
+          <div class="modal__actions">
+            <button type="button" class="btn btn--ghost" id="cancelAddBook">Vazgeç</button>
+            <button type="submit" class="btn btn--primary" id="submitBookBtn">Kaydet</button>
+          </div>
+        </form>
+      </dialog>
+
+      <script type="module" src="js/main.js"></script>
+</body>
+</html> 

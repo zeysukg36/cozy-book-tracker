@@ -1,0 +1,46 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: cozy_mongo
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      
+    ports:
+    - "${MONGO_PORT}:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:  ./backend
+    container_name: cozy_backend
+    restart: unless-stopped
+    env_file:
+    - ./backend/.env
+    ports:
+    - "${BACKEND_PORT}:8000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+    - ./backend/app:/app/app
+
+  frontend:
+    build: ./frontend
+    container_name: cozy_frontend
+    restart: unless-stopped
+    ports:
+    - "${FRONTEND_PORT}:80"
+    depends_on:
+    - backend
+
+volumes:
+  mongo_data: 

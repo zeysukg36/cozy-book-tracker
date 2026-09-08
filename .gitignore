@@ -1,0 +1,16 @@
+# Python
+venv/
+__pycache__/
+*.pyc 
+
+# Env dosyaları
+.env
+backend/.env
+
+# OS / Editör
+.DS_Store
+.vscode/
+.idea/
+
+# Docker 
+*.log 

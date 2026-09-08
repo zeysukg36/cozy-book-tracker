@@ -1,0 +1,45 @@
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(color-text);
+  font-size: var(--fs-base);
+  -webkit-font-smoothing: antialiased;
+} 
+
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+button, input, select { font-family: inherit; font-size: inherit; color: inherit; } 
+button { cursor: pointer; border: none; background: none; } 
+
+:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+} 
+/* --- Özel Scrollbar --- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-bg);
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--color-primary-dark); }
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-bg);
+}

@@ -1,0 +1,48 @@
+:root {
+  /* Renkler */
+  --color-bg: #FAF7FC;
+  --color-surface: #FFFFFF;
+  --color-primary: #A78BC7;
+  --color-primary-dark: #7C64A6;
+  --color-secondary: #F6D9E6;
+  --color-text: #3B3247;
+  --color-text-muted: #8A7F99;
+  --color-border: #ECE4F5;
+
+  --status-to-read-bg: #FBE3D8;
+  --status-to-read-text: #A15E3C;
+  --status-reading-bg: #DCE4F7;
+  --status-reading-text: #4A5FA0;
+  --status-finished-bg: #DCEEDD;
+  --status-finished-text: #3F8352;
+
+  --genre-accent-1-bg: #FBF3D0;
+  --genre-accent-1-text: #8A7530;
+  --genre-accent-2-bg: #E5DFF7;
+  --genre-accent-2-text: #6B5A9E;
+
+  /* Tipografi */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Nunito', sans-serif;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.5rem;
+
+  /* Boşluk & Koşe Yarıçapı */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+
+  /* Lila tonlu gölge - standart gri gölge yerine paletle uyumlu */
+  --shadow-card: 0 4px 16px rgba(124, 100, 166, 0.12);
+  --shadow-card-hover: 0 8px 24px rgba(124, 100, 166, 0.18);
+
+  --transition-base: 180ms ease;
+
+} 
