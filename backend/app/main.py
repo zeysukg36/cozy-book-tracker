@@ -6,7 +6,7 @@ from app.routers import books
 
 
 app = FastAPI(
-    title="Cozy Book Tracker API",
+    title="Booklib API",
     version="1.0.0",
 )
 
