@@ -1,0 +1,24 @@
+name: Cozy Book Tracker CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Kodu Çek (Checkout)
+      uses: actions/checkout@v3
+
+    - name: Python Kurulumu
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Gereksinimleri Yükle
+      run: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
